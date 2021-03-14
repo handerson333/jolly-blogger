@@ -13,7 +13,11 @@
   box-sizing: border-box;
   z-index: 90;
 }
-
+ .Logo {
+   padding-top: 10px;
+   height: 80%;
+   width: auto;
+ }
 .Toolbar nav {
   height: 100%;
 }
