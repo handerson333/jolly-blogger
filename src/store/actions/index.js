@@ -1,0 +1,1 @@
+export { articlePostInit, postArticle } from './post';
