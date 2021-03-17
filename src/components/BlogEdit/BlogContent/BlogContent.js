@@ -1,21 +1,119 @@
+// import React, { Component } from 'react';
+// import * as actions from '../../../store/actions/';
+// import axios from '../../../axios-blogs';
+// import { connect } from 'react-redux';
+// import classes from './BlogContent.module.css';
+// import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+
+// export class BlogContent extends Component {
+//   state = {
+//     postForm: {
+//       name: 'hayden',
+//       title: {
+//         elementType: 'input',
+//         elementConfig: {
+//           type: 'text',
+//           placeholder: 'Post Title',
+//         },
+//         value: '',
+//         validation: {
+//           required: true,
+//         },
+//         valid: false,
+//         touched: false,
+//       },
+//       content: {
+//         elementType: 'textarea',
+//         elementConfig: {
+//           type: 'text',
+//           placeholder: 'Post Title',
+//         },
+//         value: '',
+//         validation: {
+//           required: true,
+//         },
+//         valid: false,
+//         touched: false,
+//       },
+//     },
+//   };
+
+//   submitHandler = (event) => {
+//     console.log('SUBMIT HANDLER START');
+//     event.preventDefault();
+//     const formData = {};
+//     for (let formElementIdentifier in this.state.postForm) {
+//       formData[formElementIdentifier] = this.state.postForm[
+//         formElementIdentifier
+//       ].value;
+//     }
+//     const post = {
+//       postData: formData,
+//     };
+//     console.log(`SUBMIT HANDLER PRE POST\ndata:\t${post.name}\n`);
+
+//     this.props.onArticlePost(post);
+//   };
+
+//   render() {
+//     return (
+//       <div className={classes.wrapper}>
+//         <form className={classes.paper} onSubmit={this.submitHandler}>
+//           <div className={classes.margin}>
+//             Title:
+//             <input
+//               className={classes.blogInputTitle}
+//               type='text'
+//               name='title'
+//             />
+//           </div>
+//           <textarea
+//             placeholder='What would you like to order? '
+//             className={classes.blogInputText}
+//             name='text'
+//             rows='4'
+//           ></textarea>
+//           <button className={classes.PostButton}>Post</button>
+//         </form>
+//       </div>
+//     );
+//   }
+// }
+
+// const mapStateToProps = (state) => {
+//   return {
+//     posted: state.post.posted,
+//   };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onArticlePost: (postData) => dispatch(actions.postArticle(postData)),
+//   };
+// };
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(withErrorHandler(BlogContent, axios));
 import React, { Component } from 'react';
-import * as actions from '../../../store/actions/';
-import axios from '../../../axios-blogs';
 import { connect } from 'react-redux';
-import classes from './BlogContent.module.css';
+import Button from '../../../components/UI/Button/Button';
+import classes from './ContactData.css';
+import axios from '../../../axios-blogs';
+import Spinner from '../../../components/UI/Spinner/Spinner';
+import Input from '../../../components/UI/Input/Input';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
-
-
+import * as actions from '../../../store/actions/';
 
 export class BlogContent extends Component {
   state = {
-    postForm: {
-      name: "hayden",
-      title: {
+    orderForm: {
+      name: {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Post Title',
+          placeholder: 'Your Name',
         },
         value: '',
         validation: {
@@ -24,11 +122,11 @@ export class BlogContent extends Component {
         valid: false,
         touched: false,
       },
-      content: {
-        elementType: 'textarea',
+      street: {
+        elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'Post Title',
+          placeholder: 'Street',
         },
         value: '',
         validation: {
@@ -36,44 +134,167 @@ export class BlogContent extends Component {
         },
         valid: false,
         touched: false,
-      }
-    }
-  }
+      },
+      zipCode: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Zip Code',
+        },
+        value: '',
+        validation: {
+          required: true,
+          minLength: 5,
+          maxLength: 5,
+        },
+        valid: false,
+        touched: false,
+      },
+      country: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'Country',
+        },
+        value: '',
+        validation: {
+          required: true,
+        },
+        valid: false,
+        touched: false,
+      },
+      email: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'email',
+          placeholder: 'email@gmail.com',
+        },
+        value: '',
+        validation: {
+          required: true,
+        },
+        valid: false,
+        touched: false,
+      },
+      deliveryMethod: {
+        elementType: 'select',
+        elementConfig: {
+          options: [
+            { value: 'fastest', displayValue: 'Fastest' },
+            { value: 'cheapest', displayValue: 'Cheapest' },
+          ],
+        },
+        value: 'fastest',
+        validation: {},
+        valid: true,
+      },
+    },
+    formIsValid: false,
+  };
 
-  submitHandler = (event) => {
+  orderHandler = (event) => {
     event.preventDefault();
     const formData = {};
-    for (let formElementIdentifier in this.state.postForm) {
-      formData[formElementIdentifier] = this.state.postForm[
+    for (let formElementIdentifier in this.state.orderForm) {
+      formData[formElementIdentifier] = this.state.orderForm[
         formElementIdentifier
       ].value;
     }
-    const post = {
-      postData: formData
-    }
-    this.props.onArticlePost(post);
-
+    const order = {
+      ingredients: this.props.ings,
+      price: this.props.price,
+      orderData: formData,
+    };
+    this.props.onOrderBurger(order);
   };
+  checkValidity(value, rules) {
+    let isValid = true;
+    if (rules.required) {
+      isValid = value.trim() !== '' && isValid;
+    }
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength && isValid;
+    }
+    if (rules.maxLength) {
+      isValid = value.length <= rules.maxLength && isValid;
+    }
+    return isValid;
+  }
 
+  inputChangedHandler = (event, inputIdentifier) => {
+    const updatedOrderForm = {
+      ...this.state.orderForm,
+    };
+    const updatedFormElement = {
+      ...updatedOrderForm[inputIdentifier],
+    };
+    updatedFormElement.value = event.target.value;
+    updatedFormElement.valid = this.checkValidity(
+      updatedFormElement.value,
+      updatedFormElement.validation
+    );
+    updatedFormElement.touched = true;
+    updatedOrderForm[inputIdentifier] = updatedFormElement;
+
+    let formIsValid = true;
+    for (let inputIdentifier in updatedOrderForm) {
+      formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+    }
+    console.log('formIsValid:\t' + formIsValid);
+    this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
+  };
   render() {
+    const formElementsArray = [];
+    for (let key in this.state.orderForm) {
+      formElementsArray.push({
+        id: key,
+        config: this.state.orderForm[key],
+      });
+    }
+    let form = (
+      <form onSubmit={this.orderHandler}>
+        {formElementsArray.map((formElement) => (
+          <Input
+            key={formElement.id}
+            elementType={formElement.config.elementType}
+            elementConfig={formElement.config.elementConfig}
+            value={formElement.config.value}
+            invalid={!formElement.config.valid}
+            shouldValidate={formElement.config.validation}
+            touched={formElement.config.touched}
+            changed={(event) => this.inputChangedHandler(event, formElement.id)}
+          />
+        ))}
+        <Button btnType='Success' disabled={!this.state.formIsValid}>
+          ORDER
+        </Button>
+      </form>
+    );
+    if (this.props.isLoading) {
+      form = <Spinner />;
+    }
     return (
-      <div className={classes.wrapper}>
-        <form className={classes.paper} method="get" action="">
-          <div className={classes.margin}>Title:
-        <input className={classes.blogInputTitle} type="text" name="title" />
-          </div>
-          <textarea placeholder="What's on your mind? " className={classes.blogInputText} name="text" rows="4"></textarea>
-          <button className={classes.PostButton}>Post</button>
-        </form>
+      <div className={classes.ContactData}>
+        <h4>Enter your Contact data</h4>
+        {form}
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    onArticlePost: (postData) => dispatch(actions.postArticle(postData))
-  }
-}
+    ings: state.burgerBuilder.ingredients,
+    price: state.burgerBuilder.totalPrice,
+    loading: state.order.loading,
+  };
+};
 
-export default connect(null, mapDispatchToProps)(withErrorHandler(BlogContent, axios));
+const mapDispatchToProps = {
+  onOrderBurger: (orderData) => actions.purchaseBurger(orderData),
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(BlogContent, axios));
