@@ -21,7 +21,7 @@ const input = (props) => {
     case 'textarea':
       inputElement = (
         <textarea
-          className={inputClasses.join(' ')}
+          className={classes.BlogInputText}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}

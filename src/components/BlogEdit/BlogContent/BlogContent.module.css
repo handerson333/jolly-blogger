@@ -2,6 +2,9 @@
 .paper {
 	color:#FFF;
 	font-size:20px;
+	display: flex;
+  flex-direction: column;
+  align-self: center;
 }
 .margin {
 	margin-left:12px;
@@ -38,14 +41,13 @@
   resize: none; 
 }
 .blogInputTitle {
-	background-color:transparent;
-	border-bottom:3px solid #FFF;
-	color:#FFF;
+	background-color: #1c1c1c20;
+	color:#000;
 	font-size:20px;
 	font-family:Courier, monospace;
 	height:28px;
 	font-weight:bold;
-	width:10%;
+	border:none;
 }
 .blogButton {
 	cursor:pointer;
