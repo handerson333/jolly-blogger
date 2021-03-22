@@ -8,8 +8,7 @@ const fab = (props) => (
       className={[classes.fab, classes[props.btnType]].join(' ')}
       onClick={props.clicked}
     >
-      +
-  </button>
+    </button>
   </div>
 );
 export default fab;
