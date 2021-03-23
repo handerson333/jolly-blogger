@@ -7,25 +7,17 @@ import { Link } from 'react-router-dom';
 import addImg from './addButton.svg';
 
 
-const onEditPage = () => {
-  const location = window.location.href.toString();
-  console.log('locaiton: ' + location);
-  return location.contains('edit');
-}
-
-
 const toolbar = props => (
   <header className={classes.Toolbar}>
 
-    {!onEditPage() &&
-      <>
-        <Link className={classes.Logo} to="/">
-          <Logo height="80%" />
-        </Link>
-        <Link to="/edit">
-          <img src={addImg} alt='add new post button' />
-        </Link>
-      </>}
+    <>
+      <Link className={classes.Logo} to="/">
+        <Logo height="80%" />
+      </Link>
+      <Link to="/edit">
+        <img src={addImg} alt='add new post button' className={classes.AddNewButton} />
+      </Link>
+    </>
 
 
     <DrawerToggle clicked={props.drawerToggleClicked} />
