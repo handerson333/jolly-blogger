@@ -5,16 +5,18 @@
   outline: none;
   cursor: pointer;
   font: inherit;
-  padding: 10px;
+  padding: 10px 20px;
   margin: 10px;
   font-weight: bold;
   display: flex;
   align-self: center;
+  border-radius: 50px;
 }
 
 
-.Success {
-  color: #39607a;
+.Primary {
+  color: #ff8f00;
+  background-color: #39607a;
 }
 
 .Danger {
@@ -22,7 +24,6 @@
 }
 
 .Button:disabled {
-  color: #b9b9b9;
-  border: solid #b9b9b9;
+  display: none;
   cursor: not-allowed;
 }

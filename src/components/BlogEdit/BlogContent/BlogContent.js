@@ -29,7 +29,7 @@ export class BlogContent extends Component {
         elementType: 'textarea',
         elementConfig: {
           type: 'textarea',
-          placeholder: 'content',
+          placeholder: `What's on your mind?`,
         },
         value: '',
         validation: {
@@ -123,7 +123,7 @@ export class BlogContent extends Component {
               changed={(event) => this.inputChangedHandler(event, formElement.id)}
             />
           ))}
-          <Button btnType='Success' disabled={!this.state.formIsValid}>
+          <Button btnType='Primary' disabled={!this.state.formIsValid}>
             Post
         </Button>
         </form>

@@ -19,6 +19,8 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
+  border-radius: 5px;
+
 }
 
 .InputElement:focus {
@@ -32,7 +34,7 @@
 }
 
 .BlogInputText {
-  height: 50vh; 
+  height: 60vh; 
 	width:95%;
 	overflow:hidden;
 	background-color:#FFF;
