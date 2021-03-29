@@ -1,1 +1,1 @@
-export { articlePostInit, postArticle } from './post';
+export { articlePostInit, postArticle, fetchPosts } from './post';
