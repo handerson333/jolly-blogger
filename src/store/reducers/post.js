@@ -8,7 +8,7 @@ const initialState = {
 
 
 const postArticleInit = (state, action) => {
-  return updateObject(state, { purchased: false });
+  return updateObject(state, { posted: false });
 };
 
 const postArticleStart = (state, action) => {
@@ -16,11 +16,11 @@ const postArticleStart = (state, action) => {
 };
 
 const postArticleSuccess = (state, action) => {
-  const newOrder = updateObject(action.orderData, { id: action.orderId });
+  const newPost = updateObject(action.postData, { id: action.postId });
   return updateObject(state, {
     loading: false,
-    purchased: true,
-    orders: state.orders.concat(newOrder),
+    posted: true,
+    posts: state.posts.concat(newPost),
   });
 };
 
@@ -34,7 +34,7 @@ const fetchPostsStart = (state, action) => {
 }
 
 const fetchPostsSuccess = (state, action) => {
-  return updateObject(state, { loading: true })
+  return updateObject(state, { posts: action.posts, loading: false })
 }
 
 const fetchPostsFail = (state, action) => {

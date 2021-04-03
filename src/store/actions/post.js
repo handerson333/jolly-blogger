@@ -43,20 +43,20 @@ export const articlePostInit = () => {
 export const fetchPostsSuccess = (posts) => {
   return {
     type: actionTypes.FETCH_POSTS_SUCCESS,
-    posts: posts
+    posts: posts,
   }
 }
 
 export const fetchPostsFail = (error) => {
   return {
     type: actionTypes.FETCH_POSTS_FAIL,
-    error: error
+    error: error,
   }
 }
 
 export const fetchPostsStart = () => {
   return {
-    type: actionTypes.FETCH_POSTS_START
+    type: actionTypes.FETCH_POSTS_START,
   }
 }
 
@@ -67,7 +67,7 @@ export const fetchPosts = () => {
     axios.get('/posts.json')
       .then((response) => {
         const fetchedPosts = [];
-        console.log(response)
+        console.log(response.data)
         for (let key in response.data) {
           fetchedPosts.push({
             ...response.data[key],

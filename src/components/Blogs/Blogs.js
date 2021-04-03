@@ -1,22 +1,31 @@
 import axios from '../../axios-blogs';
-import React, { useEffect } from 'react';
+import React, { Component } from 'react';
 import Article from './article/article';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
-function Blogs(props) {
-  useEffect(() => {
-    // Update the document title using the browser API
-    document.title = `You clicked 5 times`;
-    props.onFetchPosts();
-  });
-  return (
-    <>
-      <Article />
-    </>
-  );
+class Blogs extends Component {
+  componentDidMount() {
+    this.props.onFetchPosts();
+    console.log('COMPONENT DID MOUNT:\t' + this.props.posts)
+  };
+
+  render() {
+    let posts = <Spinner />;
+    if (!this.props.loading) {
+      posts = this.props.posts.map((post) => (
+        <Article
+          key={post.id}
+          title={post.postData.title}
+          content={post.postData.content}
+        />
+      ));
+      <p>done loading</p>
+    }
+    return <div>{posts}</div>;
+  }
 }
 
 const mapStateToProps = (state) => {
