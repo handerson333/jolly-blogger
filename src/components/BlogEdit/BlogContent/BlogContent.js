@@ -6,6 +6,7 @@ import classes from './BlogContent.module.css';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
+import AddImage from '../../AddImage/AddImage';
 
 
 
@@ -21,6 +22,19 @@ export class BlogContent extends Component {
         value: '',
         validation: {
           required: true,
+        },
+        valid: false,
+        touched: false,
+      },
+      image: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'file',
+          placeholder: 'image',
+        },
+        value: '',
+        validation: {
+          required: false,
         },
         valid: false,
         touched: false,
@@ -111,6 +125,7 @@ export class BlogContent extends Component {
     return (
       <div className={classes.wrapper}>
         <form className={classes.paper} method="get" onSubmit={this.submitHandler}>
+          <AddImage />
           {formElementsArray.map((formElement) => (
             <Input
               key={formElement.id}
