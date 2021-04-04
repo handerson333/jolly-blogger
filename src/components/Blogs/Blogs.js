@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
+import classes from './Blogs.module.css';
 
 class Blogs extends Component {
   componentDidMount() {
@@ -18,13 +19,12 @@ class Blogs extends Component {
       posts = this.props.posts.map((post) => (
         <Article
           key={post.id}
-          title={post.postData.title}
-          content={post.postData.content}
+          post={post}
         />
       ));
       <p>done loading</p>
     }
-    return <div>{posts}</div>;
+    return <div className={classes.posts}>{posts}</div>;
   }
 }
 

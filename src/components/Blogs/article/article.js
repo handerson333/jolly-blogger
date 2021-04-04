@@ -1,15 +1,13 @@
 import React from 'react'
-
+import classes from './article.module.css'
 
 const article = (props) => {
   console.log('article:\t' + props)
   return (
-    <div>
-      <p>
-        title: <strong>{props.title}</strong>
-      </p>
-      <p>
-        Content: <strong>{props.content}</strong>
+    <div className={classes.article}>
+      <span className={classes.article__header}><h3>{props.post.postData.title}</h3><div>{new Date(Date.parse(props.post.date)).toLocaleDateString("en-US")}</div></span>
+      <p className={classes.article__body}>
+        {props.post.postData.content}
       </p>
     </div>
   );

@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Fenix&family=Fira+Sans:wght@200;300;400&display=swap');
+
+.article {
+  width: 320px;
+  padding: 5% 0px;
+}
+
+.article__header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  font-family: 'Fenix', serif;
+}
+
+
+.article__body{
+  font-size: 16px;
+  text-align: left;
+  font-family: 'Fira Sans', sans-serif;
+  font-weight: 300;
+}
