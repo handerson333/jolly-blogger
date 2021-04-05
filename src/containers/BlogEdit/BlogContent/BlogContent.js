@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import * as actions from '../../../store/actions/';
+import * as actions from '../../../store/actions';
 import axios from '../../../axios-blogs';
 import { connect } from 'react-redux';
 import classes from './BlogContent.module.css';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
-
-
 
 export class BlogContent extends Component {
   state = {
@@ -24,6 +22,7 @@ export class BlogContent extends Component {
         },
         valid: false,
         touched: false,
+        className: 'inputTitle'
       },
       content: {
         elementType: 'textarea',
@@ -37,6 +36,7 @@ export class BlogContent extends Component {
         },
         valid: false,
         touched: false,
+        className: 'inputTextArea'
       },
     },
     formIsValid: false,
@@ -55,11 +55,9 @@ export class BlogContent extends Component {
       date: Date(),
       postData: formData
     }
-    // console.log('made it here:\n' + JSON.stringify(post, null, 4));
 
-    axios.post('/posts.json', post)
-      .then(response => console.log(response))
-      .catch(error => console.log(error))
+    this.props.onArticlePost(post);
+    this.props.history.push('/');
 
   };
 
@@ -110,7 +108,7 @@ export class BlogContent extends Component {
     }
     return (
       <div className={classes.wrapper}>
-        <form className={classes.paper} method="get" onSubmit={this.submitHandler}>
+        <form className={classes.paper} onSubmit={this.submitHandler}>
           {formElementsArray.map((formElement) => (
             <Input
               key={formElement.id}

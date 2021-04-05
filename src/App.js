@@ -1,8 +1,8 @@
 import './App.css';
 import { Route } from 'react-router-dom';
 
-import Blogs from './components/Blogs/Blogs';
-import { BlogContent } from './components/BlogEdit/BlogContent/BlogContent';
+import Blogs from './containers/Blogs/Blogs';
+import BlogContent from './containers/BlogEdit/BlogContent/BlogContent';
 import Layout from './containers/Layout/Layout';
 
 function App() {

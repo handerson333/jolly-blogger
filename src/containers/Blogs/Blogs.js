@@ -1,8 +1,8 @@
 import axios from '../../axios-blogs';
 import React, { Component } from 'react';
-import Article from './article/article';
+import Article from '../../components/article/article';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/';
+import * as actions from '../../store/actions';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import classes from './Blogs.module.css';
@@ -10,7 +10,6 @@ import classes from './Blogs.module.css';
 class Blogs extends Component {
   componentDidMount() {
     this.props.onFetchPosts();
-    console.log('COMPONENT DID MOUNT:\t' + this.props.posts)
   };
 
   render() {
@@ -22,7 +21,6 @@ class Blogs extends Component {
           post={post}
         />
       ));
-      <p>done loading</p>
     }
     return <div className={classes.posts}>{posts}</div>;
   }
@@ -37,7 +35,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFetchPosts: () => dispatch(actions.fetchPosts())
+    onFetchPosts: () => dispatch(actions.fetchPosts()),
   }
 }
 
