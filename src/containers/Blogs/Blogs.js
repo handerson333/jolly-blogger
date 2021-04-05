@@ -22,7 +22,12 @@ class Blogs extends Component {
         />
       ));
     }
-    return <div className={classes.posts}>{posts}</div>;
+    return (
+      <>
+        <h1 className={classes.title}>Jolly Blog</h1>
+        <div className={classes.posts}>{posts}</div>
+      </>
+    )
   }
 }
 

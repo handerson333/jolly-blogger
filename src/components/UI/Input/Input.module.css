@@ -20,13 +20,9 @@
   width: 100%;
   box-sizing: border-box;
   border-radius: 5px;
-
 }
 
-.InputElement:focus {
-  outline: none;
-  background-color: #ccc;
-}
+
 
 .Invalid {
   border: 1px solid red;
@@ -34,26 +30,24 @@
 }
 
 .BlogInputText {
-  height: 60vh; 
+  min-height: 60vh;
 	width:340px;
-	overflow:hidden;
-	background-color:#FFF;
 	color:#222;
 	font-family:Courier, monospace;
 	font-weight:normal;
 	font-size:16px;
-	resize:none;
 	line-height:21px;
 	padding-top:24px;
   padding-left: 20px;
 	padding-bottom: 24px;
 	background-image: linear-gradient(#ece63d80,#ece63d80), url(https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
   background-size: 100%;
+  outline-width: 0 !important;
 	background-repeat:repeat-y, repeat;
 	-webkit-border-radius:12px;
 	border-radius:12px;
 	-webkit-box-shadow: 0px 2px 14px #000;
-	box-shadow: 0px 2px 14px #000;
+	box-shadow: 0px 4px 8px #000;
   overflow: hidden; 
   word-wrap: break-word; 
   resize: none; 

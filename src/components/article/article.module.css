@@ -5,6 +5,10 @@
   padding: 5% 0px;
 }
 
+.article:last-child{
+  padding-bottom: 20%;
+}
+
 .article__header{
   display: flex;
   flex-direction: row;
@@ -21,3 +25,4 @@
   font-family: 'Fira Sans', sans-serif;
   font-weight: 300;
 }
+
