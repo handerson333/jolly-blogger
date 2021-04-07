@@ -118,3 +118,10 @@
 .PostButton:not(:disabled) {
   animation: enable 0.3s linear;
 }
+
+
+@media only screen and (min-width: 880px){
+	.wrapper{
+		margin-top: 5%;
+	}
+}
