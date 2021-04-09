@@ -12,12 +12,9 @@
   padding: 0 20px;
   box-sizing: border-box;
   z-index: 90;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
- .Logo {
-   padding-top: 10px;
-   height: 80%;
-   width: auto;
- }
+
 .Toolbar nav {
   height: 100%;
 }
@@ -37,6 +34,7 @@
 @media only screen and (min-width: 880px){
   .Toolbar {
     top: 0;
+    height: 76px;
   }
 
   .AddNewButton{

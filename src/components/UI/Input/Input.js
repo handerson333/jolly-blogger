@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Input.module.css';
+import TextArea from './TextArea';
 
 const input = (props) => {
   let inputElement = null;
@@ -20,7 +21,7 @@ const input = (props) => {
       break;
     case 'textarea':
       inputElement = (
-        <textarea
+        <TextArea
           className={classes.BlogInputText}
           {...props.elementConfig}
           value={props.value}

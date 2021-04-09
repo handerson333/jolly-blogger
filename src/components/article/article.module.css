@@ -2,35 +2,48 @@
 
 .article {
   width: 320px;
-  padding: 5% 0px;
+  padding: 0;
+  margin-bottom: 5%;
+  background-color: #FcFcFc;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
 }
 
 .article:last-child{
-  padding-bottom: 20%;
+  margin-bottom: 20%;
 }
 
 .article__header{
+  border-radius: 5px 5px 0 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: nowrap;
   font-family: 'Fenix', serif;
   text-align: left;
+  background: rgb(67,206,162);
+  background: linear-gradient(45deg, rgba(67,206,162,1) 21%, rgba(24,90,157,1) 100%);
+  padding: 5%;
+  
 }
+.article__header h3{
+  padding-right: 5px;
 
+}
 
 .article__body{
   font-size: 16px;
   text-align: left;
   font-family: 'Fira Sans', sans-serif;
   font-weight: 300;
+  padding: 5%;
 }
 
 @media only screen and (min-width: 880px){
   .article{
     float: left;
     width: 40%;
-    margin: 0 5%;
+    margin: 1% 5%;
   }
 
   .article__body{
