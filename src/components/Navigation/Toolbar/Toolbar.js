@@ -12,7 +12,7 @@ const toolbar = props => (
 
     <>
       <Link className={classes.Logo} to="/">
-        <Logo height="80%" />
+        <Logo height="100%" />
       </Link>
       <Link to="/edit">
         <img src={addImg} alt='add new post button' className={classes.AddNewButton} />

@@ -32,9 +32,14 @@
 }
 
 @media only screen and (min-width: 880px){
+  .Logo {
+  }
+
   .Toolbar {
     top: 0;
     height: 76px;
+    background: transparent;
+    box-shadow: none;
   }
 
   .AddNewButton{

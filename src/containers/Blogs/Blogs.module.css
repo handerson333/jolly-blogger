@@ -4,7 +4,27 @@
   font-family: 'Dancing Script', cursive;
   margin: 5% 0;
   padding: 0;
-  text-shadow: 0px 11px 10px rgba(110, 71, 26, 0.5);
+  color: rgb(98, 158, 211);
+}
+
+h1 {
+  
+  background: -webkit-linear-gradient(-45deg, #23a6d5, #ee7752,#23d5ab,  rgb(250, 193, 108),#e73c7e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 500% 500%;
+  animation: gradient 20s ease infinite;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .posts{
@@ -17,6 +37,7 @@
 
 @media only screen and (min-width: 880px){
   .title{
+  font-size: 94px;
     margin: 0 0;
     position: fixed;
     left: 50%;
@@ -24,8 +45,7 @@
     z-index: 100;
     background-color: aliceblue;
     width: 30%;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+    box-shadow: none;
   }
   .posts{
     flex-direction: row;
