@@ -1,6 +1,6 @@
 .Logo {
   background-color: white;
-  height: 60px;
+  height: 40px;
   width: auto;
   box-sizing: border-box;
   border-radius: 5px;
@@ -12,6 +12,9 @@
 }
 
 @media only screen and (min-width:880px){
+  .Logo {
+    height: 60px;
+  }
   @media (prefers-reduced-motion: no-preference) {
     .Logo img {
       animation: App-logo-spin infinite 20s linear;
