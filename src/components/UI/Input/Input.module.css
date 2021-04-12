@@ -1,7 +1,8 @@
 .Input {
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
   box-sizing: border-box;
+  z-index: 0;
 }
 
 .Label {
@@ -30,8 +31,9 @@
 }
 
 .BlogInputText {
-  min-height: 60vh;
-	width:340px;
+  min-height: 70vh;
+	width:100%;
+  box-sizing: border-box;
 	color:#222;
 	font-family:Courier, monospace;
 	font-weight:normal;
@@ -50,4 +52,10 @@
   overflow: hidden; 
   word-wrap: break-word; 
   resize: none; 
+}
+
+@media only screen and (min-width: 880px){
+  .BlogInputText {
+    min-height: 75vh;
+  }
 }

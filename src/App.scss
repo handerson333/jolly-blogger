@@ -19,9 +19,9 @@
 
 // n is number of stars required
 @function multiple-box-shadow ($n) {
-  $value: '#{random(100)}vh #{random(100)}vw #FFF';
+  $value: '#{random(100)}vh #{random(100)}vw #FFFFFF10';
   @for $i from 2 through $n {
-    $value: '#{$value} , #{random(100)}vw #{random(100)}vh #FFF'
+    $value: '#{$value} , #{random(100)}vw #{random(100)}vh #FFFFFF'
   }
   @return unquote($value)
 }
@@ -42,6 +42,7 @@ html{
   background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
 }
 main {
+  min-height: 100vh;
   height: 100%;
   overflow: hidden;
 }

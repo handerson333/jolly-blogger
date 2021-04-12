@@ -80,10 +80,7 @@
 }
 .wrapper {
 	height:auto;
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:24px;
-	margin-bottom:100px;
+	margin: 24px auto 100px;
 }
 
 .PostButton {
@@ -120,5 +117,8 @@
 @media only screen and (min-width: 880px){
 	.wrapper{
 		margin-top: 5%;
+	}
+	.wrapper {
+		width: 660px;
 	}
 }
