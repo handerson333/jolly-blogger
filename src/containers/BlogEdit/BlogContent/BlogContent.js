@@ -53,10 +53,12 @@ export class BlogContent extends Component {
     const post = {
       name: 'hayden',
       date: Date(),
-      postData: formData
+      postData: formData,
+      userId: this.props.userId,
+      public: true
     }
 
-    this.props.onArticlePost(post);
+    this.props.onArticlePost(post, this.props.token);
     this.props.history.push('/');
 
   };
@@ -129,11 +131,17 @@ export class BlogContent extends Component {
     );
   }
 }
-
+const mapStateToProps = (state) => {
+  return {
+    loading: state.post.loading,
+    token: state.auth.token,
+    userId: state.auth.userId,
+  }
+}
 const mapDispatchToProps = (dispatch) => {
   return {
-    onArticlePost: (postData) => dispatch(actions.postArticle(postData))
+    onArticlePost: (postData, token) => dispatch(actions.postArticle(postData, token))
   }
 }
 
-export default connect(null, mapDispatchToProps)(withErrorHandler(BlogContent, axios));
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BlogContent, axios));

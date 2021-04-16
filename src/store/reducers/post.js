@@ -3,7 +3,8 @@ import { updateObject } from '../../shared/utility';
 
 const initialState = {
   posts: [],
-  loading: false
+  loading: false,
+  posted: false,
 }
 
 

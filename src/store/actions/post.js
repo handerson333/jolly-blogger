@@ -5,7 +5,7 @@ export const articlePostSuccess = (id, data) => {
   return {
     type: actionTypes.POST_ARTICLE_SUCCESS,
     postId: id,
-    postData: data,
+    postData: data
   };
 };
 
@@ -21,10 +21,10 @@ export const articlePostStart = () => {
   }
 }
 
-export const postArticle = (postData) => {
+export const postArticle = (postData, token) => {
   return (dispatch) => {
     dispatch(articlePostStart());
-    axios.post('/posts.json', postData)
+    axios.post('/posts.json' + token, postData)
       .then((response) => {
         console.log('posted: ' + response.data);
         dispatch(articlePostSuccess(response.data.name, postData));
@@ -61,9 +61,10 @@ export const fetchPostsStart = () => {
 }
 
 
-export const fetchPosts = () => {
+export const fetchPosts = (token, userId) => {
   return (dispatch) => {
     dispatch(fetchPostsStart());
+    const queryParams = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
     axios.get('/posts.json')
       .then((response) => {
         const fetchedPosts = [];

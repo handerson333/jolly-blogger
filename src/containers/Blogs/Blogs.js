@@ -9,18 +9,29 @@ import classes from './Blogs.module.css';
 
 class Blogs extends Component {
   componentDidMount() {
-    this.props.onFetchPosts();
+    this.props.onFetchPosts(this.props.token, this.props.userId);
   };
+
 
   render() {
     let posts = <Spinner />;
+
     if (!this.props.loading) {
-      posts = this.props.posts.map((post) => (
-        <Article
-          key={post.id}
-          post={post}
-        />
-      ));
+      posts = this.props.posts.map((post) => {
+
+        let shortenedPost = post.postData.content.substring(0, 197);
+        if (shortenedPost.length >= 197) {
+          shortenedPost += '...';
+        }
+
+        return (
+          <Article
+            key={post.id}
+            date={post.date}
+            title={post.postData.title}
+            content={shortenedPost}
+          />)
+      });
     }
     return (
       <>
@@ -34,13 +45,15 @@ class Blogs extends Component {
 const mapStateToProps = (state) => {
   return {
     posts: state.post.posts,
-    loading: state.post.loading
+    loading: state.post.loading,
+    token: state.auth.token,
+    userId: state.auth.userId
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFetchPosts: () => dispatch(actions.fetchPosts()),
+    onFetchPosts: (token, userId) => dispatch(actions.fetchPosts(token, userId)),
   }
 }
 
